@@ -1,5 +1,15 @@
-SQLite3 for Cuis
+SQLite3 for Cuis Smalltalk
 -----------------
+
+"SQLite is a software library that implements a self-contained, serverless, zero-configuration, 
+transactional SQL database engine. SQLite is the most widely deployed SQL database engine in the world.
+The source code for SQLite 
+is in the public domain."
+https://sqlite.org/
+
+This repostitory contains the access code to the library for Cuis Smalltalk https://github.com/jvuletich/Cuis.
+The code is nearly the same as the original for Squeak Smalltalk.
+
 
 ### Original Squeak files used for the port
 
