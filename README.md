@@ -20,7 +20,7 @@ from www.squeaksource.com
 
 Author: Andreas Raab
 
-Licences: MIT
+Licence: MIT
 
 
 ### Installation
