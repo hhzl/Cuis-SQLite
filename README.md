@@ -65,9 +65,10 @@ into a sibling directory and do
 1.
 The files SQLite3-Core-ar.8.mcz and then SQLite3-Tests-ar.4.mcz could be filed in as is into Cuis.
 
-2. A fix in the following method was necessary
+2.
+A fix in the following method was necessary
 
-Remove #basicSqueakToIso
+Removed method #basicSqueakToIso
 
 
 old
@@ -103,7 +104,9 @@ new
     				 i := i + 1]]
 
 					 
-3. All 5 tests out of 5 pass
+3.
+All 5 tests out of 5 passed
 
-4. Then the packages were saved and renamed as *.pck.st
+4.
+Then the packages were saved and renamed as *.pck.st
 					 
