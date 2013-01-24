@@ -1,7 +1,7 @@
 SQLite3 for Cuis
 -----------------
 
-## Original Squeak files used for the port
+### Original Squeak files used for the port
 
 * SQLite3-Core-ar.8.mcz
 * SQLite3-Tests-ar.4.mcz
@@ -13,7 +13,7 @@ Author: Andreas Raab
 Licences: MIT
 
 
-## Installation
+### Installation
 
 You need a SQLite3 library from https://sqlite.org/download.html
 in your Cuis directory.
@@ -60,7 +60,7 @@ into a sibling directory and do
 	
 
 
-## Porting history
+### Porting history
 
 1.
 The files SQLite3-Core-ar.8.mcz and then SQLite3-Tests-ar.4.mcz could be filed in as is into Cuis.
