@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2652] on 10 January 2016 at 4:17:32.539916 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2658] on 17 January 2016 at 3:02:54.012716 am'!
 'Description '!
-!provides: 'SQLite3-Core' 1 1!
+!provides: 'SQLite3-Core' 1 2!
 !classDefinition: #SQLiteRecord category: #'SQLite3-Core-Public'!
 Dictionary subclass: #SQLiteRecord
 	instanceVariableNames: ''
@@ -363,12 +363,12 @@ moduleName
 	"Was: ^ 'sqlite'"
 	^ 'sqlite3'! !
 
-!SqliteError methodsFor: 'accessing' stamp: 'pb 1/10/2016 16:16'!
+!SqliteError methodsFor: 'accessing' stamp: 'pb 1/17/2016 02:52'!
 value
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: 1) type: ExternalType char asPointerType! !
 
-!SqliteError methodsFor: 'accessing' stamp: 'pb 1/10/2016 16:16'!
+!SqliteError methodsFor: 'accessing' stamp: 'pb 1/17/2016 02:52'!
 value: anObject
 	"This method was automatically generated"
 	handle pointerAt: 1 put: anObject getHandle.! !
@@ -382,12 +382,12 @@ fields
 initialize
 	self defineFields! !
 
-!SqliteReference methodsFor: 'accessing' stamp: 'pb 1/10/2016 16:16'!
+!SqliteReference methodsFor: 'accessing' stamp: 'pb 1/17/2016 02:52'!
 value
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: 1) type: ExternalType void asPointerType! !
 
-!SqliteReference methodsFor: 'accessing' stamp: 'pb 1/10/2016 16:16'!
+!SqliteReference methodsFor: 'accessing' stamp: 'pb 1/17/2016 02:52'!
 value: anObject
 	"This method was automatically generated"
 	handle pointerAt: 1 put: anObject getHandle.! !
@@ -402,12 +402,12 @@ initialize
 	"SqliteReference initialize"
 	self defineFields! !
 
-!SqliteResultBuffer methodsFor: 'accessing' stamp: 'pb 1/10/2016 16:16'!
+!SqliteResultBuffer methodsFor: 'accessing' stamp: 'pb 1/17/2016 02:52'!
 value
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: 1) type: ExternalType void asPointerType! !
 
-!SqliteResultBuffer methodsFor: 'accessing' stamp: 'pb 1/10/2016 16:16'!
+!SqliteResultBuffer methodsFor: 'accessing' stamp: 'pb 1/17/2016 02:52'!
 value: anObject
 	"This method was automatically generated"
 	handle pointerAt: 1 put: anObject getHandle.! !
@@ -493,6 +493,10 @@ lastInsertId
 		ifFalse: [0]
 	! !
 
+!SQLiteConnection methodsFor: 'private' stamp: 'pb 1/17/2016 02:25'!
+nilReference
+	reference := nil! !
+
 !SQLiteConnection methodsFor: 'private' stamp: 'tbn 1/25/2010 19:58'!
 open
 	reference := SqliteLibrary default open: fileName.
@@ -541,9 +545,23 @@ withResultForQuery: aString do: aBlock
 fileNamed: aString
 	^ self new fileName: aString! !
 
+!SQLiteConnection class methodsFor: 'initialization' stamp: 'pb 1/17/2016 02:19'!
+initialize
+	Smalltalk addToStartUpList: self! !
+
 !SQLiteConnection class methodsFor: 'accessing' stamp: 'tbn 1/25/2010 19:58'!
 registry
 	^ registry ifNil: [registry := WeakRegistry new]! !
+
+!SQLiteConnection class methodsFor: 'private' stamp: 'pb 1/17/2016 03:01'!
+startUp: whatever
+	"nil instance references on image open to avoid VM segfault
+	registry := nil.
+	registry do: [:ea|
+		]"
+	self allInstances do: [:ea|
+		ea nilReference].
+! !
 
 !SqliteResult methodsFor: 'public' stamp: 'ab 12/16/2002 01:58'!
 atEnd
@@ -639,3 +657,4 @@ buffer: aResultBuffer rows: nRows columns: nColumns
 SqliteError initialize!
 SqliteReference initialize!
 SqliteResultBuffer initialize!
+SQLiteConnection initialize!
