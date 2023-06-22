@@ -42,9 +42,9 @@ do
 
     do:
 
-    [ :fileName | CodePackageFile installPackageStream:
+    [ :fileName | CodePackageFile installPackage:
 	
-                 (FileStream concreteStream readOnlyFileNamed: fileName)
+                 (FileDirectory on: fileName)
     ]   
 
 
@@ -62,9 +62,9 @@ into a sibling directory and do
 
     do:
 
-    [ :fileName | CodePackageFile installPackageStream:
+    [ :fileName | CodePackageFile installPackage:
 	
-                 (FileStream concreteStream readOnlyFileNamed: fileName)
+                 (FileDirectory on: fileName)
     ]   
 
 	
