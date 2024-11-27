@@ -1,6 +1,9 @@
 SQLite3 for Cuis Smalltalk
 -----------------
 
+Status: Does not work currently in Cuis 7.1
+
+
 "SQLite is a software library that implements a self-contained, serverless, zero-configuration, 
 transactional SQL database engine. SQLite is the most widely deployed SQL database engine in the world.
 The source code for SQLite 
@@ -28,47 +31,8 @@ Licence: MIT
 You need a SQLite3 library from https://sqlite.org/download.html
 in your Cuis directory.
 
-If you alrerady have installed FFI in Cuis 
 
-do
-
-    | slash |
-
-    slash _ FileDirectory slash.
-    {
-         '..', slash, 'Cuis-SQLite3', slash, 'SQLite3-Core.pck.st' .
-         '..', slash, 'Cuis-SQLite3', slash, 'SQLite3-Tests.pck.st' .
-    }
-
-    do:
-
-    [ :fileName | CodePackageFile installPackageStream:
-	
-                 (FileStream concreteStream readOnlyFileNamed: fileName)
-    ]   
-
-
-otherwise download Cuis-FFI from https://github.com/hhzl/Cuis-FFI
-into a sibling directory and do
-
-    | slash |
-
-    slash _ FileDirectory slash.
-    {
-		 '..', slash, 'Cuis-FFI', slash, 'FFI.pck.st' .
-		 '..', slash, 'Cuis-SQLite3', slash, 'SQLite3-Core.pck.st' .
-         '..', slash, 'Cuis-SQLite3', slash, 'SQLite3-Tests.pck.st' .
-    }
-
-    do:
-
-    [ :fileName | CodePackageFile installPackageStream:
-	
-                 (FileStream concreteStream readOnlyFileNamed: fileName)
-    ]   
-
-	
-
+    Feature require: 'FFI'.
 
 ### Porting history
 
